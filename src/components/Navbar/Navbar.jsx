@@ -84,6 +84,33 @@ const UserDiv = styled.div`
     transition: 1s;
   }
 `;
+const UserInDiv = styled("div")`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  flex-direction: column;
+  top: 5.5vh;
+  left: 85vw;
+  border-radius: 1rem;
+  background-color: green;
+`;
+const Variants = styled("div")`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 90%;
+  height: 20%;
+  margin: 1% 0;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: 0.5s;
+  }
+`;
+const Invisible = styled("div")`
+  position: absolute;
+  left: 500vw;
+`;
 
 const Navbar = ({ theme, toggleTheme }) => {
   const navigate = useNavigate();
@@ -115,6 +142,24 @@ const Navbar = ({ theme, toggleTheme }) => {
                 : Change
               }
           />
+          {width === "" ? (
+            <Invisible />
+          ) : (
+            <UserInDiv style={{ width: width, height: height }}>
+              <Variants onClick={() => navigate(ACCOUNT_PAGE)}>
+                Account
+              </Variants>
+              <Variants>
+                Settings
+              </Variants>
+              <Variants>
+               Help
+              </Variants>
+              <Variants>
+                 Support
+              </Variants>
+            </UserInDiv>
+          )}
         </UserDiv>
       </SecondDivCont>
     </NavContainer>
