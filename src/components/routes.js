@@ -1,6 +1,5 @@
 import { Routes, Route } from "react-router-dom";
 import NotFoundPage from "./Not Found/Not_Found";
-import DachaContainer from "../containers/DachaPage/containers/DachaContainer";
 
 const RoutesContainer = ({ theme, routes, toggleTheme }) => {
   return (
@@ -19,7 +18,6 @@ const RoutesContainer = ({ theme, routes, toggleTheme }) => {
           />
         );
       })}
-      <Route path="/about/:id" element={<DachaContainer />} />
       <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
