@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import Logoimg from "../../images/logo.png";
+import { useState } from "react";
 import DarkLogoimg from "../../images/Darklogo.png";
 import { User, Globe, Sun, Moon } from "react-feather";
 import styled from "styled-components";
@@ -76,24 +76,66 @@ const LogoDiv = styled.div`
   margin: 3rem 15rem;
 `;
 const UserDiv = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 5vw;
+  height: 5vh;
+`;
+const UserImg = styled(User)`
   border-radius: 50%;
   &&:hover {
     background-color: ${({ theme }) => theme.hover};
     transition: 1s;
   }
 `;
+const UserInDiv = styled("div")`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  flex-direction: column;
+  top: 5.5vh;
+  left: 85vw;
+  border-radius: 1rem;
+  background-color: black;
+`;
+const Variants = styled("div")`
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  width: 90%;
+  height: 20%;
+  margin: 1% 0;
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.9);
+    transition: 0.5s;
+  }
+`;
+const Invisible = styled("div")`
+  position: absolute;
+  left: 500vw;
+`;
 
 const Nvabar = ({ theme, toggleTheme }) => {
   const navigate = useNavigate();
 
+  const [width, setWidth] = useState("");
+
+  const [height, setHeight] = useState("");
+
+  const Change = () => {
+    if (width == "" && height == "") {
+      setWidth("12vw");
+      setHeight("20vh");
+    } else {
+      setWidth("");
+      setHeight("");
+    }
+  };
   return (
     <NavContainer>
       <LogoDiv onClick={() => navigate(HOME_PAGE)}>
-        {theme === "light" ? (
-          <LogoImg src={Logoimg} alt="" />
-        ) : (
-          <LogoImg src={DarkLogoimg} alt="" />
-        )}
         <Logo>DamOl</Logo>
       </LogoDiv>
       <SecondDivCont>
@@ -105,10 +147,26 @@ const Nvabar = ({ theme, toggleTheme }) => {
           {theme === "light" ? <Moon /> : <Sun />}
         </ThemeChanger>
         <UserDiv>
-          <User
+          <UserImg
             style={{ cursor: "pointer" }}
-            onClick={cookieData("username").getValue() === "" ? () => navigate(LOGIN_PAGE) : () => navigate(ACCOUNT_PAGE)}
+            onClick={
+              cookieData("username").getValue() === ""
+                ? () => navigate(LOGIN_PAGE)
+                : Change
+            }
           />
+          {width === "" ? (
+            <Invisible />
+          ) : (
+            <UserInDiv style={{ width: width, height: height }}>
+              <Variants onClick={() => navigate(ACCOUNT_PAGE)}>
+                Account
+              </Variants>
+              <Variants></Variants>
+              <Variants></Variants>
+              <Variants></Variants>
+            </UserInDiv>
+          )}
         </UserDiv>
       </SecondDivCont>
     </NavContainer>
