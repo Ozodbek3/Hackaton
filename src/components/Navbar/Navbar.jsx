@@ -17,8 +17,8 @@ const NavContainer = styled.nav`
   height: 8vh;
   z-index: 100;
   color: ${({ theme }) => theme.color};
-  background: rgb(5,158,4);
-  background: linear-gradient(grey, green)
+  background: rgb(5, 158, 4);
+  background: linear-gradient(grey, green);
 `;
 const Logo = styled("div")`
   display: flex;
@@ -137,9 +137,9 @@ const Nvabar = ({ theme, toggleTheme }) => {
       <LogoDiv onClick={() => navigate(HOME_PAGE)}>
         {/* {theme === "light" ? (
           <LogoImg src={Logoimg} alt="" />
-        ) : (
+          ) : (
           <LogoImg src={DarkLogoimg} alt="" />
-        )} */}
+          )} */}
         <Logo>EcoSafe Uzbekistan</Logo>
       </LogoDiv>
       <SecondDivCont>
@@ -157,7 +157,7 @@ const Nvabar = ({ theme, toggleTheme }) => {
               cookieData("username").getValue() === ""
                 ? () => navigate(LOGIN_PAGE)
                 : Change
-            }
+              }
           />
           {width === "" ? (
             <Invisible />
