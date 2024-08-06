@@ -18,6 +18,7 @@ const LoginFormContainer = styled.div`
   border-radius: 3rem;
   background-color: ${({ theme }) => theme.footer};
   box-shadow: 60px -16px rgba(149, 185, 228, 0.8);
+  z-index: 1000000;
 `;
 const Login = styled.div``;
 const LoginFormTitle = styled.h2`
