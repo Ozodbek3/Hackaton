@@ -97,7 +97,7 @@ const UserInDiv = styled("div")`
   top: 5.5vh;
   left: 85vw;
   border-radius: 1rem;
-  background-color: black;
+  background-color: green;
 `;
 const Variants = styled("div")`
   display: flex;
@@ -166,9 +166,15 @@ const Nvabar = ({ theme, toggleTheme }) => {
               <Variants onClick={() => navigate(ACCOUNT_PAGE)}>
                 Account
               </Variants>
-              <Variants></Variants>
-              <Variants></Variants>
-              <Variants></Variants>
+              <Variants>
+                Settings
+              </Variants>
+              <Variants>
+               Help
+              </Variants>
+              <Variants>
+                 Support
+              </Variants>
             </UserInDiv>
           )}
         </UserDiv>
