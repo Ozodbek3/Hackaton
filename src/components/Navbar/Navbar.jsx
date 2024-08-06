@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import Logoimg from "../../images/photo_5300947692010199516_y-removebg-preview.png";
 import DarkLogoimg from "../../images/Darklogo.png";
 import { User, Globe, Sun, Moon } from "react-feather";
 import styled from "styled-components";
@@ -17,15 +17,13 @@ const NavContainer = styled.nav`
   height: 8vh;
   z-index: 100;
   color: ${({ theme }) => theme.color};
-  background: rgb(5,158,4);
-  background: linear-gradient(grey, green)
 `;
 const Logo = styled("div")`
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  width: 15%;
+  width: 10%;
   margin: 0 5%;
 `;
 
@@ -36,6 +34,11 @@ const SecondDivCont = styled.div`
   width: 20%;
   height: 8vh;
   margin: 0 10%;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 12px;
+  backdrop-filter: blur(10rem);
+  background-color: #00000060;
 `;
 const LanguagesCont = styled.div`
   display: flex;
@@ -64,7 +67,7 @@ const ThemeChanger = styled("div")`
   }
 `;
 const LogoImg = styled.img`
-  width: 5rem;
+  width: 10rem;
   height: auto;
 `;
 const LogoDiv = styled.div`
@@ -75,72 +78,25 @@ const LogoDiv = styled.div`
   margin: 3rem 15rem;
 `;
 const UserDiv = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 5vw;
-  height: 5vh;
-`;
-const UserImg = styled(User)`
   border-radius: 50%;
   &&:hover {
     background-color: ${({ theme }) => theme.hover};
     transition: 1s;
   }
 `;
-const UserInDiv = styled("div")`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  position: absolute;
-  flex-direction: column;
-  top: 5.5vh;
-  left: 85vw;
-  border-radius: 1rem;
-  background-color: black;
-`;
-const Variants = styled("div")`
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  width: 90%;
-  height: 20%;
-  margin: 1% 0;
-  &:hover {
-    background-color: rgba(255, 255, 255, 0.9);
-    transition: 0.5s;
-  }
-`;
-const Invisible = styled("div")`
-  position: absolute;
-  left: 500vw;
-`;
 
-const Nvabar = ({ theme, toggleTheme }) => {
+const Navbar = ({ theme, toggleTheme }) => {
   const navigate = useNavigate();
 
-  const [width, setWidth] = useState("");
-
-  const [height, setHeight] = useState("");
-
-  const Change = () => {
-    if (width == "" && height == "") {
-      setWidth("12vw");
-      setHeight("20vh");
-    } else {
-      setWidth("");
-      setHeight("");
-    }
-  };
   return (
     <NavContainer>
       <LogoDiv onClick={() => navigate(HOME_PAGE)}>
-        {/* {theme === "light" ? (
+        {theme === "light" ? (
           <LogoImg src={Logoimg} alt="" />
         ) : (
           <LogoImg src={DarkLogoimg} alt="" />
-        )} */}
-        <Logo>EcoSafe Uzbekistan</Logo>
+        )}
+        <Logo></Logo>
       </LogoDiv>
       <SecondDivCont>
         <LanguagesCont>
@@ -151,30 +107,14 @@ const Nvabar = ({ theme, toggleTheme }) => {
           {theme === "light" ? <Moon /> : <Sun />}
         </ThemeChanger>
         <UserDiv>
-          <UserImg
+          <User
             style={{ cursor: "pointer" }}
-            onClick={
-              cookieData("username").getValue() === ""
-                ? () => navigate(LOGIN_PAGE)
-                : Change
-            }
+            onClick={cookieData("username").getValue() === "" ? () => navigate(LOGIN_PAGE) : () => navigate(ACCOUNT_PAGE)}
           />
-          {width === "" ? (
-            <Invisible />
-          ) : (
-            <UserInDiv style={{ width: width, height: height }}>
-              <Variants onClick={() => navigate(ACCOUNT_PAGE)}>
-                Account
-              </Variants>
-              <Variants></Variants>
-              <Variants></Variants>
-              <Variants></Variants>
-            </UserInDiv>
-          )}
         </UserDiv>
       </SecondDivCont>
     </NavContainer>
   );
 };
 
-export default Nvabar;
+export default Navbar;
