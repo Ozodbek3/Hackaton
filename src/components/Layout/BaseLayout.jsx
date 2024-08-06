@@ -5,6 +5,8 @@ import Ecorasm from "../../images/Ecorasm.png";
 
 const Container = styled.div`
   height: 100vh;
+background-image: url(${Ecorasm});
+background-size: cover;
 `;
 const BackRasm = styled.img`
   height: 100vh;
@@ -14,8 +16,6 @@ const ChildrenComponent = styled("div")`
   width: 100%;
   height: 100vh;
   top: 8vh;
-  background-image: url(${Ecorasm});
-  background-size: cover;
 `;
 
 const BaseLayout = ({ children, theme, toggleTheme }) => {
