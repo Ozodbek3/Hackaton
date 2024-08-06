@@ -10,7 +10,7 @@ const NavContainer = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  position: sticky;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -37,7 +37,7 @@ const SecondDivCont = styled.div`
   padding-left: 1rem;
   padding-right: 1rem;
   border-radius: 12px;
-  backdrop-filter: blur(10rem);
+  backdrop-filter: blur(3rem);
   background-color: #00000060;
 `;
 const LanguagesCont = styled.div`
