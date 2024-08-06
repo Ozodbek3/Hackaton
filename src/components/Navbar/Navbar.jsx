@@ -17,9 +17,8 @@ const NavContainer = styled.nav`
   height: 8vh;
   z-index: 100;
   color: ${({ theme }) => theme.color};
-  background-color: ${({ theme }) => theme.footer};
-  box-shadow: 6px 0px 11px 0px ${({ theme }) => theme.shadow};
-  -webkit-box-shadow: 6px 0px 11px 0px ${({ theme }) => theme.shadow};
+  background: rgb(5,158,4);
+  background: linear-gradient(grey, green)
 `;
 const Logo = styled("div")`
   display: flex;
@@ -89,12 +88,12 @@ const Nvabar = ({ theme, toggleTheme }) => {
   return (
     <NavContainer>
       <LogoDiv onClick={() => navigate(HOME_PAGE)}>
-        {theme === "light" ? (
+        {/* {theme === "light" ? (
           <LogoImg src={Logoimg} alt="" />
         ) : (
           <LogoImg src={DarkLogoimg} alt="" />
-        )}
-        <Logo>DamOl</Logo>
+        )} */}
+        <Logo>EcoSafe Uzbekistan</Logo>
       </LogoDiv>
       <SecondDivCont>
         <LanguagesCont>
