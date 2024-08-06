@@ -13,7 +13,7 @@ const Account = styled("div")`
   width: 90vw;
   height: 75vh;
   margin: 0 auto;
-  margin-top: 5vh;
+  margin-top: 10vh;
   border-radius: 0.5rem;
   background-color: ${({ theme }) => theme.footer};
 `;

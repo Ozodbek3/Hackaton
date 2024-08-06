@@ -5,6 +5,7 @@ import { User, Globe, Sun, Moon } from "react-feather";
 import styled from "styled-components";
 import { ACCOUNT_PAGE, HOME_PAGE, LOGIN_PAGE } from "../../constants/routes";
 import { cookieData } from "../../utils/cookies";
+import { useState } from "react";
 
 const NavContainer = styled.nav`
   display: flex;
@@ -18,6 +19,7 @@ const NavContainer = styled.nav`
   z-index: 100;
   color: ${({ theme }) => theme.color};
 `;
+
 const Logo = styled("div")`
   display: flex;
   justify-content: center;
@@ -40,6 +42,7 @@ const SecondDivCont = styled.div`
   backdrop-filter: blur(3rem);
   background-color: #00000060;
 `;
+
 const LanguagesCont = styled.div`
   display: flex;
   align-items: center;
@@ -52,6 +55,7 @@ const LanguagesCont = styled.div`
     transition: 1s;
   }
 `;
+
 const ThemeChanger = styled("div")`
   display: flex;
   justify-content: center;
@@ -66,24 +70,31 @@ const ThemeChanger = styled("div")`
     transition: 1s;
   }
 `;
+
 const LogoImg = styled.img`
   width: 10rem;
   height: auto;
 `;
+
 const LogoDiv = styled.div`
   display: flex;
   justify-content: start;
   align-items: center;
   cursor: pointer;
   margin: 3rem 15rem;
+  z-index: 1000;
 `;
+
 const UserDiv = styled.div`
   border-radius: 50%;
+  z-index: 1000;
+  cursor: pointer;
   &&:hover {
     background-color: ${({ theme }) => theme.hover};
     transition: 1s;
   }
 `;
+
 const UserInDiv = styled("div")`
   display: flex;
   justify-content: center;
@@ -92,9 +103,11 @@ const UserInDiv = styled("div")`
   flex-direction: column;
   top: 5.5vh;
   left: 85vw;
+  z-index: 1000;
   border-radius: 1rem;
-  background-color: green;
+  background-color: black;
 `;
+
 const Variants = styled("div")`
   display: flex;
   align-items: center;
@@ -107,6 +120,7 @@ const Variants = styled("div")`
     transition: 0.5s;
   }
 `;
+
 const Invisible = styled("div")`
   position: absolute;
   left: 500vw;
@@ -114,15 +128,23 @@ const Invisible = styled("div")`
 
 const Navbar = ({ theme, toggleTheme }) => {
   const navigate = useNavigate();
+  const [isOpen, setIsOpen] = useState(false);
+  const [dimensions, setDimensions] = useState({ width: "", height: "" });
+
+  const toggleMenu = () => {
+    console.log("Toggling menu. Current state:", isOpen);
+    if (!isOpen) {
+      setDimensions({ width: "12vw", height: "20vh" });
+    } else {
+      setDimensions({ width: "", height: "" });
+    }
+    setIsOpen(!isOpen);
+  };
 
   return (
     <NavContainer>
       <LogoDiv onClick={() => navigate(HOME_PAGE)}>
-        {theme === "light" ? (
-          <LogoImg src={Logoimg} alt="" />
-          ) : (
-          <LogoImg src={DarkLogoimg} alt="" />
-          )} 
+        <LogoImg src={Logoimg} alt="Logo" />
         <Logo></Logo>
       </LogoDiv>
       <SecondDivCont>
@@ -139,27 +161,9 @@ const Navbar = ({ theme, toggleTheme }) => {
             onClick={
               cookieData("username").getValue() === ""
                 ? () => navigate(LOGIN_PAGE)
-                : Change
-              }
+                : () => navigate(ACCOUNT_PAGE)
+            }
           />
-          {width === "" ? (
-            <Invisible />
-          ) : (
-            <UserInDiv style={{ width: width, height: height }}>
-              <Variants onClick={() => navigate(ACCOUNT_PAGE)}>
-                Account
-              </Variants>
-              <Variants>
-                Settings
-              </Variants>
-              <Variants>
-               Help
-              </Variants>
-              <Variants>
-                 Support
-              </Variants>
-            </UserInDiv>
-          )}
         </UserDiv>
       </SecondDivCont>
     </NavContainer>
