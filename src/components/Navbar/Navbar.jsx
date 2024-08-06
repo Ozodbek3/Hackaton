@@ -93,9 +93,9 @@ const Navbar = ({ theme, toggleTheme }) => {
       <LogoDiv onClick={() => navigate(HOME_PAGE)}>
         {theme === "light" ? (
           <LogoImg src={Logoimg} alt="" />
-        ) : (
+          ) : (
           <LogoImg src={DarkLogoimg} alt="" />
-        )}
+          )} 
         <Logo></Logo>
       </LogoDiv>
       <SecondDivCont>
@@ -109,7 +109,11 @@ const Navbar = ({ theme, toggleTheme }) => {
         <UserDiv>
           <User
             style={{ cursor: "pointer" }}
-            onClick={cookieData("username").getValue() === "" ? () => navigate(LOGIN_PAGE) : () => navigate(ACCOUNT_PAGE)}
+            onClick={
+              cookieData("username").getValue() === ""
+                ? () => navigate(LOGIN_PAGE)
+                : Change
+              }
           />
         </UserDiv>
       </SecondDivCont>
